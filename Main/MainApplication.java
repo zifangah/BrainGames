@@ -10,41 +10,26 @@ public class MainApplication {
         addTwoNumbers(l1, l2);
     }
 
+    public static int i, j, sum;
+    public static int oldCarry = 0;
+    public static int curCarry;
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2){
         ListNode result = new ListNode(0);
-        int i, j;
-        int sum = 0;
-        int oldCarry = 0;
-        int newCarry = 0;
-        //print off list
         while(l1!=null && l2!=null) {
             i = l1.val;
             j = l2.val;
             sum = (i+j)>=10 ? (i+j)%10 : (i+j);
-            oldCarry = (i+j)>=10 ? 1 : 0;
-            result= new ListNode(sum, result);
-            if(oldCarry>0){
-                System.out.println(l1.val + ": " + l2.val + ": " + result.val);
-                l1=l1.next;
-                l2=l2.next;
-                i = l1.val;
-                j = l2.val;
-                sum = (i+j)>=10 ? (i+j)%10 : (i+j);
-                //newCarry = (i+j)>=10 ? 1 : 0; this needs to be used for another carryover
-                result = new ListNode(sum+oldCarry, result);
-                System.out.println(l1.val + ": " + l2.val + ": " + result.val);
-                l1=l1.next;
-                l2=l2.next;
+            curCarry = (i+j)>=10 ? 1 : 0;
+            result= new ListNode(sum+oldCarry, result);
+            //increment oldCarry after
+            if(curCarry>0){
+                oldCarry++;
             }
-            else{
-                System.out.println(l1.val + ": " + l2.val + ": " + result.val);
-                l1=l1.next;
-                l2=l2.next;
-            }
-
+            System.out.println(l1.val + ": " + l2.val + ": " + result.val);
+            l1=l1.next;
+            l2=l2.next;
         }
-        //clean up needed
-
+        //try a larger list with twice carryover
         return result;
     }
 
