@@ -1,2 +1,2 @@
 # BrainGames
-practice makes perfect
+practice makes perfect, mostly practice questions
